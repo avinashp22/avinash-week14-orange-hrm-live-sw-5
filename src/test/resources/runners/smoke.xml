@@ -16,6 +16,7 @@
     <test name="Smoke Test" >
         <classes>
             <class name="com.orangehrmlive.demo.testsuite.LoginTest"/>
+            <class name="com.orangehrmlive.demo.testsuite.UsersTest"/>
         </classes>
     </test>
 </suite>

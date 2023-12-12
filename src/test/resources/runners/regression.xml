@@ -16,6 +16,8 @@
     <test name="Regression Test" >
         <classes>
             <class name="com.orangehrmlive.demo.testsuite.LoginTest"/>
-        </classes>
+            <class name="com.orangehrmlive.demo.testsuite.UsersTest"/>
+
+                    </classes>
     </test>
 </suite>

@@ -1,64 +1,55 @@
 package com.orangehrmlive.demo.pages;
 
-import com.aventstack.extentreports.Status;
-import com.orangehrmlive.demo.customlisteners.CustomListeners;
 import com.orangehrmlive.demo.utility.Utility;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by Jay Vaghani
- */
+
 public class LoginPage extends Utility {
 
     @CacheLookup
-    @FindBy (xpath = "//h1[contains(text(),'Welcome, Please Sign In!')]") WebElement welcomeText;
-   // By welcomeText = By.xpath("//h1[contains(text(),'Welcome, Please Sign In!')]");
+    @FindBy(xpath = "//h5[normalize-space()='Login']")
+    WebElement loginText;
 
     @CacheLookup
-    @FindBy (id = "Email") WebElement emailField;
-   // By emailField = By.id("Email");
-
-   @CacheLookup
-   @FindBy (name= "Password") WebElement passwordField;
-   // By passwordField = By.name("Password");
-
+    @FindBy(name = "username")
+    WebElement username;
 
     @CacheLookup
-    @FindBy (xpath= "//button[contains(text(),'Log in')]") WebElement loginButton;
-   // By loginButton = By.xpath("//button[contains(text(),'Log in')]");
-
+    @FindBy(name = "password")
+    WebElement password;
 
     @CacheLookup
-    @FindBy (xpath= "//div[@class='message-error validation-summary-errors']") WebElement errorMessage;
-   // By errorMessage = By.xpath("//div[@class='message-error validation-summary-errors']");
+    @FindBy(xpath = "//button[normalize-space()='Login']")
+    WebElement loginButton;
 
+    @CacheLookup
+    @FindBy(xpath = "//p[@class='oxd-text oxd-text--p oxd-alert-content-text']")
+    WebElement textInvalidCredentials;
 
-
-    public String getWelcomeText(){
-        String message = getTextFromElement(welcomeText);
-        return message;
+    public void enterUsername(String userId) {
+        sendTextToElement(username, userId);
     }
 
-    public void enterEmailId(String email){
-        sendTextToElement(emailField, email);
-        CustomListeners.test.log(Status.PASS,"Enter EmailId " + email);
+    public void enterPassword(String passWord) {
+        sendTextToElement(password, passWord);
     }
 
-    public void enterPassword(String password){
-        sendTextToElement(passwordField, password);
-        CustomListeners.test.log(Status.PASS,"Enter Password " + password);
+    public String verifyTextLogin() {
+        return getTextFromElement(loginText);
     }
 
-    public void clickOnLoginButton(){
+    public void clickOnLoginButton() {
         clickOnElement(loginButton);
-        CustomListeners.test.log(Status.PASS,"Click on loginButton");
     }
 
-    public String getErrorMessage(){
-        String message = getTextFromElement(errorMessage);
-        CustomListeners.test.log(Status.PASS,"Get errorMessage");
-        return message;
+    public void loginSuccessfully(String userName, String passWord) {
+        sendTextToElement(username, userName);
+        sendTextToElement(password, passWord);
+        clickOnElement(loginButton);
+    }
+    public String verifyTextInvalidCredentials() {
+        return getTextFromElement(textInvalidCredentials);
     }
 }

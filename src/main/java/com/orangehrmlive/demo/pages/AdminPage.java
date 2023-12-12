@@ -5,26 +5,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by Jay Vaghani
- */
+
 public class AdminPage extends Utility {
 
     @CacheLookup
-    @FindBy(linkText= "Log in") WebElement loginLink;
-  //  By loginLink = By.linkText("Log in");
-
+    @FindBy(xpath = "//span[normalize-space()='User Management']")
+    WebElement userManagement;
 
     @CacheLookup
-    @FindBy (linkText = "Register") WebElement registerLink;
-  //  By registerLink = By.linkText("Register");
+    @FindBy(xpath = "//li[@class='oxd-topbar-body-nav-tab --parent']")
+    WebElement job;
 
-    public void clickOnLoginLink(){
-        clickOnElement(loginLink);
+    @CacheLookup
+    @FindBy(xpath = "//a[normalize-space()='Organization']")
+    WebElement organization;
+
+    public void clickOnUserManagement() {
+        clickOnElement(userManagement);
     }
 
-    public void clickOnRegisterLink(){
-        clickOnElement(registerLink);
+    public void clickOnJob() {
+        clickOnElement(job);
     }
 
+    public void clickOnOrganization() {
+        clickOnElement(organization);
+    }
 }

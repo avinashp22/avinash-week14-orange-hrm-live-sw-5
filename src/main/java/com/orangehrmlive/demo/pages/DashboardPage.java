@@ -5,26 +5,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by Jay Vaghani
- */
+
 public class DashboardPage extends Utility {
 
     @CacheLookup
-    @FindBy(linkText= "Log in") WebElement loginLink;
-  //  By loginLink = By.linkText("Log in");
-
+    @FindBy(xpath = "//h6[normalize-space()='Dashboard']")
+    WebElement textDashboard;
 
     @CacheLookup
-    @FindBy (linkText = "Register") WebElement registerLink;
-  //  By registerLink = By.linkText("Register");
+    @FindBy(xpath = "//p[@class='oxd-userdropdown-name']")
+    WebElement userProfileLogo;
 
-    public void clickOnLoginLink(){
-        clickOnElement(loginLink);
+    @CacheLookup
+    @FindBy (linkText = "Logout")
+    WebElement logout;
+
+
+    public String verifyTextDashboard() {
+        return getTextFromElement(textDashboard);
     }
 
-    public void clickOnRegisterLink(){
-        clickOnElement(registerLink);
+    public void clickOnUserProfileLogo() {
+        clickOnElement(userProfileLogo);
     }
+
+    public void clickOnLogout() {mouseHoverToElementAndClick(logout);}
 
 }
